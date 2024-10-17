@@ -26,8 +26,37 @@ const getproduct = async (req,res,next)=>{
         next(error)
     }
 }
+
+const getallprduct = async(req,res,next)=>{
+    try {
+      const result = await productService.getall({})
+      res.status(200).json({
+        message:"successfully fetched",
+        data:result,
+        success:true
+      })
+    } catch (error) {
+        next(error)
+    }
+}
+const getdeleteone = async(req,res,next)=>{
+    try {
+        const result = await productService.delateone(req.params.id)
+        res.status(200).json({
+            message:"delete your product successfully",
+            data:result,
+            success:true,
+
+        })
+    } catch (error) {
+        next(error)
+        
+    }
+}
 const productController = {
     addproduct,
-    getproduct
+    getproduct,
+    getallprduct,
+    getdeleteone
 }
 export default productController;
