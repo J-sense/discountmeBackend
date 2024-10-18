@@ -12,9 +12,18 @@ const signup = async (req,res,next)=>{
     next(error)
    }
 }
+const login = async (req,res,next)=>{
+    const result = await userServices.login(req.body)
+    res.status(200).json({
+        message:"User find Successfully",
+        success: true,
+        data:result
+    })
+}
 
 
 const  userController = {
-    signup
+    signup,
+    login
 }
 export default userController;
